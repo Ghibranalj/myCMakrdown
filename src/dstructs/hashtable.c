@@ -3,7 +3,7 @@
 #include "hashtable.h"
 #include <stdlib.h>
 
-#define TABLE_SIZE 100000
+#define TABLE_SIZE 10000
 
 tableEntry *createEntry(const char *key, const char *value);
 void freeEntry(tableEntry *entry);

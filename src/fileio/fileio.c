@@ -3,6 +3,8 @@
 #include <string.h>
 #include<fcntl.h>
 
+#include "fileio.h"
+
 
 FILE *GetFile(const char *path)
 {

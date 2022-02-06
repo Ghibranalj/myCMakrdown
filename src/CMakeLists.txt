@@ -21,7 +21,7 @@ foreach(dir ${list_of_dirs})
     add_library(${dir} STATIC ${c} ${h})
     message(STATUS "Adding module ${dir}")
 
-    target_include_directories( ${dir} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+    target_include_directories( ${dir} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 endforeach()
 
 set(

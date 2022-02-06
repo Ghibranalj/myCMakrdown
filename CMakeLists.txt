@@ -7,7 +7,7 @@ set (DEPENDANCY "")
 
 set(DEPS
     # add subdirectory here
-    modules
+    src
 )
 
 
@@ -16,7 +16,7 @@ foreach(dir ${DEPS})
 endforeach()
 
 
-add_executable("${CMAKE_PROJECT_NAME}" main.c)
+add_executable("${CMAKE_PROJECT_NAME}" src/main.c)
 foreach(dependancy ${DEPENDANCY})
     message(STATUS "Linking ${dependancy} to ${CMAKE_PROJECT_NAME}")
     target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ${dependancy})
