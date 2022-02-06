@@ -1,6 +1,4 @@
-cmake_minimum_required(VERSION 3.7)
-
-
+cmake_minimum_required(VERSION 3.20)
 
 
 project (cmarkdown VERSION 1.0.0)
@@ -20,6 +18,6 @@ endforeach()
 
 add_executable("${CMAKE_PROJECT_NAME}" main.c)
 foreach(dependancy ${DEPENDANCY})
-    message(STATUS_SUCCESS "Linking ${dependancy} to ${CMAKE_PROJECT_NAME}")
+    message(STATUS "Linking ${dependancy} to ${CMAKE_PROJECT_NAME}")
     target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ${dependancy})
 endforeach()

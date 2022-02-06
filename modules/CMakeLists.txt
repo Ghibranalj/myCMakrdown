@@ -15,13 +15,11 @@ endforeach()
 
 foreach(dir ${list_of_dirs})
 
-    message(STATUS "Adding library ${dir}")
+    FILE(GLOB c ${dir}/*.c)
+    FILE(GLOB h ${dir}/*.h)
 
-    FILE(GLOB cpp ${dir}/*.c)
-    FILE(GLOB hpp ${dir}/*.h)
-
-    add_library(${dir} ${cpp} ${cpp})
-    message(STATUS "Adding library ${dir}")
+    add_library(${dir} ${c} ${h})
+    message(STATUS "Adding module ${dir}")
 
     target_include_directories( ${dir} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 endforeach()
