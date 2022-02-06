@@ -1,0 +1,12 @@
+build/**
+.vscode/**
+Makefile
+makefile
+CMakeCache*
+*.cmake
+*/CMakeFiles/**
+CMakeFiles/**
+*.a
+ 
+
+cmarkdown
