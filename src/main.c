@@ -1,42 +1,25 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "dstructs/hashtable.h"
+#include "dstructs/linkedlist.h"
 #include "fileio/fileio.h"
 
 int main(int argc, char **argv) {
-  // if(argc < 2 ){
-  //     printf("Please provide a markdown file");
-  //     return -1;
-  // }
 
-  // FILE *file = GetFile("test.md");
-  // if(!file) return 1;
+  linkedlist *list = ll_create(5);
+  ll_append(list, 6);
+  ll_append(list, 7);
 
-  // int size = GetSize(file);
+  ll_gethead(list);
 
-  // char str[size+1];
-  // Read(file, str, size);
-
-  // printf(str);
-
-  HashTable *ht = CreateHT();
-
-  SetHT(ht, "name1", "em");
-  SetHT(ht, "name2", "russian");
-  SetHT(ht, "name3", "pizza");
-  SetHT(ht, "name4", "doge");
-  SetHT(ht, "name5", "pyro");
-  SetHT(ht, "name6", "joost");
-  SetHT(ht, "name7", "kalix");
-
-  DumpHT(ht);
+  ll_forward(&list);
+  ll_dump(list, false);
 
 
-  char* s = GetHT(ht, "name1");
+  ll_dump(list, true);
 
-  printf("name1 : %s\n",s);
-  FreeHT(ht);
+  ll_free(list);
   return 0;
 }

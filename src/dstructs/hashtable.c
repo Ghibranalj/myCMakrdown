@@ -1,7 +1,8 @@
 #include <string.h>
+#include <stdlib.h>
 
 #include "hashtable.h"
-#include <stdlib.h>
+
 
 #define TABLE_SIZE 10000
 
