@@ -1,25 +1,33 @@
 #include <stdbool.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
+
+#include "tokenizer/tokenizer.h"
+
 #include "dstructs/linkedlist.h"
-#include "fileio/fileio.h"
 
 int main(int argc, char **argv) {
-
-  linkedlist *list = ll_create(5);
-  ll_append(list, 6);
-  ll_append(list, 7);
-
-  ll_gethead(list);
-
-  ll_forward(&list);
-  ll_dump(list, false);
+    char str [2];
 
 
-  ll_dump(list, true);
+    printf("%s\n", str);
 
-  ll_free(list);
-  return 0;
+    //           
+    char *text = "hello world this is amazing ***ghibran*** \n\n am i great";
+    linkedlist *ind = tkn_getindices(text);
+
+    int len = (ll_length(ind, true)) -1;
+    char *tokens[len];
+    // ll_dump(ind, true);
+    tkn_gettokens(text, ind, tokens,len); 
+    ll_free(ind);
+
+    for (int i = 0; i < len; i++)
+    {
+       printf("[%s] ", tokens[i]);
+    }
+    
+
+    printf("\n");
 }

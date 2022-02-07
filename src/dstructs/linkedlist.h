@@ -24,3 +24,5 @@ void ll_backward(linkedlist **list);
 
 void ll_dump(linkedlist *list, bool from_head);
 void ll_free(linkedlist *ll);
+
+int ll_length(linkedlist *ll, bool from_head);
