@@ -7,6 +7,8 @@
 #include "dstructs/linkedlist.h"
 #include "stringutil/stringutil.h"
 
+#include "tokenizer.h"
+
 // returns indeces where tokenization should occur
 linkedlist *tkn_getindices(const char *inp) {
     linkedlist *list = NULL;
@@ -38,8 +40,6 @@ linkedlist *tkn_getindices(const char *inp) {
         bool isboundary = (is_special != is_prev_special) ||
                           (is_special && charswitch) || i == 0;
 
-        // printf("%c %s \n", c, isboundary ? "<-" : "");
-
         if (isboundary) {
             if (list == NULL)
                 list = ll_create(i);
@@ -53,7 +53,7 @@ linkedlist *tkn_getindices(const char *inp) {
         c = inp[i];
         is_prev_special = is_special;
     }
-    ll_append(list, i+1);
+    ll_append(list, i + 1);
     hs_free(set);
 
     return list;
@@ -78,4 +78,30 @@ void tkn_gettokens(const char *text, linkedlist *indices, char *strings[],
         curr = curr->next;
     }
     printf("\n");
+}
+
+tokens *tkn_tokenize(const char *text) {
+    linkedlist *ind = tkn_getindices(text);
+
+    int len = (ll_length(ind, true)) - 1;
+
+    char **tkns = malloc(len * sizeof(char *));
+    tkn_gettokens(text, ind, tkns, len);
+    ll_free(ind);
+
+    tokens *ret = malloc(sizeof(tokens));
+
+    ret->len = len;
+    ret->val = tkns;
+
+    return ret;
+}
+
+void tkn_free(tokens *token) {
+    int len = token->len;
+    for (int i = 0; i < len; i++) {
+        free(token->val[i]);
+    }
+
+    free(token);
 }
