@@ -14,7 +14,7 @@ struct syntaxtree {
 
 
 void st_free(syntaxtree *tree);
-void st_dump(syntaxtree *tree);
+void st_dump(syntaxtree *tree, char* tab);
 
 void st_add_child(syntaxtree *tree, syntaxtree *child);
 

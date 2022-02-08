@@ -1,8 +1,7 @@
 #include <stddef.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
-
 
 #include "syntaxtree.h"
 
@@ -42,20 +41,34 @@ void st_add_child(syntaxtree *st, syntaxtree *child) {
 void free_one(syntaxtree *st) {
 
     free(st->val);
-    free(st->children);
+    if (st->children != NULL)
+        free(st->children);
     free(st);
 }
 
-void st_dump(syntaxtree *st) {
-    printf("val : %s; children : %d\n", st->val, st->children_len);
+void st_dump(syntaxtree *st, char *tab) {
+    if (st == NULL)
+        return;
+    // char * out = strcat(st->val , tab);
+    printf("%s%s\n", tab, st->val);
+    int len = st->children_len;
+    for (int i = 0; i < len; i++) {
+        syntaxtree *child = st->children[i];
+        int len = strlen(tab) * 2;
+        char *n_tab = malloc((sizeof(char) * len) + 1);
+        strcpy(n_tab, tab);
+        strcpy(&n_tab[len / 2], tab);
+        st_dump(child, n_tab);
+        free(n_tab);
+    }
 }
 
 void st_free(syntaxtree *st) {
-    if(st == NULL) return;
+    // if (st == NULL)
+    //     return;
     int len = st->children_len;
     for (int i = 0; i < len; i++) {
-        syntaxtree * child = st->children[i];
-        st_dump(st);
+        syntaxtree *child = st->children[i];
         st_free(child);
     }
     free_one(st);
