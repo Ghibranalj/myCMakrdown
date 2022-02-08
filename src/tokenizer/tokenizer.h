@@ -13,3 +13,5 @@ struct tokens {
 // void tkn_gettokens(const char* text, linkedlist *indeces, char * strings[], int size); 
 tokens *tkn_tokenize(const char *text);
 void tkn_free(tokens * token);
+
+void tkn_dump(tokens * tkn);

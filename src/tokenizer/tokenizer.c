@@ -29,7 +29,8 @@ linkedlist *tkn_getindices(const char *inp) {
 
         char c_string[2];
         char_to_string(c, c_string);
-        bool is_special = hs_contains(set, c_string);
+        bool is_special = hs_contains(set, c_string); 
+        hs_contains(set, c_string);
 
         char n_char = inp[i + 1];
         char n_string[2];
@@ -73,7 +74,7 @@ void tkn_gettokens(const char *text, linkedlist *indices, char *strings[],
         token[len] = '\0';
 
         strings[i] = token;
-
+        // free(token);
         i++;
         curr = curr->next;
     }
@@ -94,14 +95,26 @@ tokens *tkn_tokenize(const char *text) {
     ret->len = len;
     ret->val = tkns;
 
+
+
     return ret;
 }
 
 void tkn_free(tokens *token) {
     int len = token->len;
     for (int i = 0; i < len; i++) {
+        // printf(" (%s) ", token->val[i]);
         free(token->val[i]);
     }
-
+    free(token->val);
+    // printf("%d", len);
     free(token);
+}
+
+void tkn_dump(tokens *token) {
+    int len = token->len;
+
+    for (int i = 0; i < len; i++) {
+        printf(" (%s) ", token->val[i]);
+    }
 }

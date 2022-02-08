@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "hashtable.h"
@@ -174,9 +175,11 @@ void FreeHT(HashTable *table) {
   for (int i = 0; i < TABLE_SIZE; i++) {
     tableEntry *entry = table->entries[i];
     while (entry != NULL) {
+      // printf("Freed (%s,%s) ", entry->key, entry->value);
       freeEntry(entry);
       entry = entry->next;
     }
   }
-  freeEntry(table);
+  free(table->entries);
+  free(table);
 }
