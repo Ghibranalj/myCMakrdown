@@ -3,17 +3,15 @@
 #include <string.h>
 
 
-#include "tokenizer/tokenizer.h"
-
-#include "dstructs/linkedlist.h"
+#include "dstructs/syntaxtree.h"
 
 int main(int argc, char **argv) {
-    //           
-    char *text = "hello world this is amazing ***ghibran*** \n\n am i great";
 
-    int len;
-    tokens *t = tkn_tokenize(text);
-
-    tkn_free(t);
-    printf("\n");
+    syntax s = none;
+    syntaxtree * st = st_create(s, "hello world");
+    st_add_child(st, st_create(s,"hello world2"));
+    st_add_child(st, st_create(s,"hello world3"));
+    // st_dump(st);
+    
+    st_free(st);
 }
